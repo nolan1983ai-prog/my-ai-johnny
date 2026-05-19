@@ -64,6 +64,14 @@ When running large language models (LLMs) locally, one of the most important dec
 - In Ollama: tags like `qwen3.6:27b-nvfp4` are **macOS MLX format** (misleading name!)
 - Native NVFP4 on Linux requires NVIDIA TensorRT-LLM or vLLM with Blackwell support
 
+### CUDA (Compute Unified Device Architecture)
+- NVIDIA's **parallel computing platform and programming model** — the foundation of GPU-accelerated AI
+- Launched in 2006; allows software to directly use NVIDIA GPU cores for general computation
+- Every NVIDIA AI framework (PyTorch, TensorFlow, vLLM, Ollama) runs on top of CUDA
+- **CUDA version** determines which GPU features and precision formats are available (e.g., FP8 requires CUDA 11.8+, NVFP4 requires CUDA 12.8+)
+- Check version: `nvidia-smi` (top-right) or `nvcc --version`
+- GX10 (GB10 Blackwell) ships with **CUDA 13.0** — supports all modern formats including FP8, MXFP8, NVFP4
+
 ---
 
 ## Quick Comparison Table
