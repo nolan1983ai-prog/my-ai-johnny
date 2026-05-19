@@ -133,6 +133,117 @@ ollama run qwen3.6:27b-q8_0 "Hello! Introduce yourself."
 
 ---
 
+## Supplementary: How MoE Works — The Router & 128 Experts
+
+### Background
+When we say `qwen3.6:35b-a3b` activates only 3B parameters per token, a natural question arises: **how does the model decide which 3B to use?**
+
+---
+
+### The Router Network
+
+Every MoE layer contains a lightweight **Router Network (門控網絡)** whose sole job is:
+
+> *"For this token, which Experts should handle it?"*
+
+```
+Input Token
+    ↓
+[Router Network]  ← lightweight neural net, learned during training
+    ↓
+Calculates a score for every Expert
+    ↓
+Selects Top-K highest scoring Experts (e.g. Top-8 out of 128)
+    ↓
+Only those Experts perform computation
+    ↓
+Results are weighted and merged → Output
+```
+
+---
+
+### How the Router Learns to Choose
+
+The Router is **trained jointly with the model** — it learns automatically from data:
+
+- Math problems → activates Experts good at logical reasoning
+- Chinese text → activates language-specific Experts
+- Coding tasks → activates programming logic Experts
+- General knowledge → activates knowledge-dense Experts
+
+No human labels these specializations. The model **self-organizes** during training (emergent specialization).
+
+---
+
+### Are the 128 Experts Pre-defined?
+
+**Yes — all 128 Experts are fixed in the model after training.**
+
+Each Expert is a set of **FFN (Feed-Forward Network) weight matrices**, baked into the model file:
+
+```
+Layer 1: [Expert_001] [Expert_002] ... [Expert_128]
+Layer 2: [Expert_001] [Expert_002] ... [Expert_128]
+...
+Layer N: [Expert_001] [Expert_002] ... [Expert_128]
+```
+
+Each layer has its own independent set of 128 Experts. They are all loaded into VRAM when the model starts.
+
+**BUT** — what each Expert "specializes in" is implicit:
+- ✅ **Structurally listed** — 128 fixed slots, all loaded into VRAM at runtime
+- ❌ **No human-assigned labels** — nobody wrote "Expert 42 handles math"
+- Researchers discover specializations after-the-fact via **interpretability analysis**
+
+---
+
+### The VRAM Paradox Explained
+
+```
+At inference time:
+- All 128 Experts' parameters are loaded into VRAM  ✅  (why it needs 24GB)
+- Per token: only 8 Experts actually compute           (why it's fast as 3B)
+- Remaining 120 Experts: data present, no computation
+```
+
+This is why `35b-a3b` needs ~24GB VRAM (full model loaded) but runs at ~3B speed.
+
+---
+
+### Qwen3.6 35b-a3b Specific Numbers
+
+| Property | Value |
+|----------|-------|
+| Total Experts per layer | 128 + 1 shared (always active) |
+| Activated per token | Top-8 |
+| Active parameters | ~3B |
+| Total parameters | 35B |
+| Router overhead | Negligible |
+
+---
+
+### Why 3B Active and Not More?
+
+This is an **optimized balance found during training research**:
+- Too few active experts → poor quality
+- Too many active experts → loses efficiency advantage of MoE
+- 3–4B active parameters is the current **sweet spot** for quality vs. speed
+
+---
+
+### Human Analogy
+
+Imagine a company with 128 specialist employees:
+
+1. Manager (Router) receives a task
+2. Manager judges: this needs "Finance" + "Legal" + ... (8 people)
+3. Only those 8 attend the meeting; other 120 rest
+4. Their outputs are combined into one answer
+
+Every token = a new task. The manager decides fresh each time. Nobody told the manager in advance who is the "Finance expert" — it figured that out through years of experience (training).
+
+---
+
 ## Available gemma4 Tags on Ollama
 
 Reference: [https://ollama.com/library/gemma4](https://ollama.com/library/gemma4)
