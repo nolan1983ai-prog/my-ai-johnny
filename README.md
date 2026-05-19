@@ -53,6 +53,32 @@ This was first explored during setup of the **Asus Ascent GX10** (NVIDIA GB10 Bl
 | Q8_0   | INT8 GGUF | ~30GB | Minimal | Universal | ✅ |
 | Q4_K_M | INT4 GGUF | ~17GB | Noticeable on complex tasks | Universal | ✅ |
 
+#### a3b (Activated 3 Billion)
+- Refers to **MoE (Mixture of Experts)** architecture where only ~3B parameters are **activated per token**, even though the total model size is larger (e.g., 35B)
+- Example: `qwen3.6:35b-a3b` = 35B total params, but only 3B active during inference
+- **Benefit:** Near-35B quality at ~3B compute cost — very fast and memory-efficient
+- **Size:** ~24GB despite being a "35B" model
+
+#### MLX
+- Apple's **machine learning framework** for Apple Silicon (M1/M2/M3/M4 chips)
+- Optimized for **unified memory architecture** on Mac
+- Tags with `mlx` (e.g., `qwen3.6:27b-mlx-bf16`) are **macOS only** — will fail on Linux
+- Equivalent to CUDA on NVIDIA, but for Apple
+
+#### MXFP8 (Microscaling FP8)
+- A newer variant of FP8 developed by **Microsoft + NVIDIA + AMD** (OCP MX spec)
+- Uses **block-level scaling** (finer granularity than standard FP8) → better accuracy
+- In Ollama context: tags like `qwen3.6:27b-mxfp8` are **macOS MLX format** despite the name
+- On Linux with NVIDIA, true MXFP8 support requires PyTorch 2.5+ / vLLM
+
+#### NVFP4 (NVIDIA Float Point 4)
+- NVIDIA's proprietary **4-bit floating point** format for Blackwell GPUs (GB10, B100, B200)
+- Uses FP4 with microscaling — much higher quality than standard INT4 quantization
+- In Ollama: tags like `qwen3.6:27b-nvfp4` are **macOS MLX format** (misleading name!)
+- Native NVFP4 on Linux requires NVIDIA TensorRT-LLM or vLLM with Blackwell support
+
+---
+
 > **Key insight:** Q8_0 and FP8 are both "8-bit" but fundamentally different technologies. Q8_0 uses integer quantization (GGUF format), while FP8 uses native floating-point hardware acceleration. For Ollama users, Q8_0 is the practical equivalent.
 
 ---
