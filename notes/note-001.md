@@ -64,6 +64,16 @@ When running large language models (LLMs) locally, one of the most important dec
 - In Ollama: tags like `qwen3.6:27b-nvfp4` are **macOS MLX format** (misleading name!)
 - Native NVFP4 on Linux requires NVIDIA TensorRT-LLM or vLLM with Blackwell support
 
+### e2b / e4b (Effective 2B / Effective 4B)
+- The **"E" stands for "Effective" parameters** — used in Google's Gemma 4 edge models
+- `e2b` = 2.3B effective parameters (but 5.1B total including embeddings)
+- `e4b` = 4.5B effective parameters (but 8B total including embeddings)
+- Designed specifically for **edge device deployments** (laptops, mobile)
+- Support **Text + Image + Audio** input — multimodal at tiny size
+- 128K context window
+- Example: `ollama run gemma4:e2b` or `ollama run gemma4:e4b`
+- Different from `a3b` (MoE active params) — e2b/e4b are dense models optimized for on-device use
+
 ### CUDA (Compute Unified Device Architecture)
 - NVIDIA's **parallel computing platform and programming model** — the foundation of GPU-accelerated AI
 - Launched in 2006; allows software to directly use NVIDIA GPU cores for general computation
@@ -120,6 +130,33 @@ Reference: [https://ollama.com/library/qwen3.6/tags](https://ollama.com/library/
 ollama pull qwen3.6:27b-q8_0
 ollama run qwen3.6:27b-q8_0 "Hello! Introduce yourself."
 ```
+
+---
+
+## Available gemma4 Tags on Ollama
+
+Reference: [https://ollama.com/library/gemma4](https://ollama.com/library/gemma4)
+
+### Model Variants Overview
+
+| Tag | Size | Type | Active Params | Modalities | Context | Linux+NVIDIA |
+|-----|------|------|--------------|-----------|---------|-------------|
+| `gemma4:e2b` | ~5GB | Dense (Edge) | 2.3B effective | Text, Image, Audio | 128K | ✅ |
+| `gemma4:e4b` | ~8GB | Dense (Edge) | 4.5B effective | Text, Image, Audio | 128K | ✅ |
+| `gemma4:26b` | ~26GB | MoE | 3.8B active / 25.2B total | Text, Image | 256K | ✅ |
+| `gemma4:31b` | ~31GB | Dense | 30.7B | Text, Image | 256K | ✅ |
+| `gemma4:31b-cloud` | — | Cloud | — | Text, Image | 256K | ☁️ Ollama Cloud only |
+
+### Benchmark Highlights (Gemma 4 family)
+
+| Benchmark | 31B Dense | 26B MoE (A4B) | E4B | E2B |
+|-----------|-----------|----------------|-----|-----|
+| MMLU Pro | 85.2% | 82.6% | 69.4% | 60.0% |
+| AIME 2026 | 89.2% | 88.3% | 42.5% | 37.5% |
+| LiveCodeBench v6 | 80.0% | 77.1% | 52.0% | 44.0% |
+| GPQA Diamond | 84.3% | 82.3% | 58.6% | 43.4% |
+
+> **Key insight:** `gemma4:26b` (MoE) achieves near-31B quality at only 3.8B active parameters — similar concept to `qwen3.6:35b-a3b`. Great value for VRAM.
 
 ---
 
