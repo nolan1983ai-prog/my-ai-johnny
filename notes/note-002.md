@@ -38,7 +38,7 @@ All three models run entirely on GPU (GB10 has 121.6 GiB VRAM — sufficient to 
 - **GPU:** NVIDIA GB10 Blackwell
 - **VRAM:** 121.6 GiB
 - **Ollama API:** `http://localhost:11434`
-- **Remote access:** SSH from Mac mini (192.168.1.209 → 192.168.1.5)
+- **Remote access:** SSH over local network
 - **Benchmark script:** `~/benchmark.sh` (Bash + curl + Python3)
 
 ---
