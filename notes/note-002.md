@@ -33,11 +33,11 @@ All three models run entirely on GPU (GB10 has 121.6 GiB VRAM — sufficient to 
 
 ## Test Environment
 
-- **Host:** Asus Ascent GX10 (`gx10-e826`)
+- **Host:** Asus Ascent GX10 (`gx10`)
 - **OS:** Ubuntu Linux (aarch64)
 - **GPU:** NVIDIA GB10 Blackwell
 - **VRAM:** 121.6 GiB
-- **Ollama API:** `http://localhost:11434`
+- **Ollama API:** `http://localhost`
 - **Remote access:** SSH over local network
 - **Benchmark script:** `~/benchmark.sh` (Bash + curl + Python3)
 
