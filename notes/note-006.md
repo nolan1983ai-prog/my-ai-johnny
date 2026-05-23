@@ -31,39 +31,21 @@ Q4_K_M delivers approximately **2.5× higher throughput** than BF16 (11.1 tok/s 
 
 ```mermaid
 xychart-beta
-    title "Throughput by Format and Prompt Length (tok/s)"
-    x-axis ["Short", "Medium", "Long"]
+    title "Average Throughput by Quantisation Format (tok/s)"
+    x-axis ["Q4_K_M", "Q8_0", "BF16"]
     y-axis "Tokens per second" 0 --> 13
-    bar [11.11, 11.12, 11.11]
-    bar [7.39, 7.44, 7.45]
-    bar [4.43, 4.44, 4.44]
+    bar [11.11, 7.43, 4.44]
 ```
-
-> 🔵 Q4_K_M &nbsp;&nbsp; 🟠 Q8_0 &nbsp;&nbsp; 🟢 BF16
 
 ### Speed Ratio vs BF16
 
 ```mermaid
 xychart-beta
     title "Speed Ratio vs BF16 (higher is faster)"
-    x-axis ["Q4_K_M vs BF16", "Q8_0 vs BF16", "Q4_K_M vs Q8_0"]
+    x-axis ["Q4_K_M vs BF16", "Q8_0 vs BF16"]
     y-axis "Ratio (×)" 0 --> 3
-    bar [2.505, 1.676, 1.495]
+    bar [2.505, 1.676]
 ```
-
-### Time to First Token (TTFT) by Prompt Length
-
-```mermaid
-xychart-beta
-    title "Time to First Token (ms) — lower is better"
-    x-axis ["Short", "Medium", "Long"]
-    y-axis "TTFT (ms)" 0 --> 800
-    bar [152.4, 196.1, 528.6]
-    bar [202.6, 254.6, 721.1]
-    bar [292.1, 341.9, 559.2]
-```
-
-> 🔵 Q4_K_M &nbsp;&nbsp; 🟠 Q8_0 &nbsp;&nbsp; 🟢 BF16
 
 ### Raw Data Table
 
