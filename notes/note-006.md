@@ -103,20 +103,6 @@ xychart-beta
 
 ## Quality Results
 
-### Quality Score Overview
-
-```mermaid
-xychart-beta
-    title "Quality Score by Question (max 1.0 per question)"
-    x-axis ["A1", "A2", "A3", "B1", "B2", "C1", "C2"]
-    y-axis "Score" 0 --> 1.1
-    bar [0.5, 0.5, 0.5, 0.5, 1.0, 1.0, 1.0]
-    bar [0.5, 0.5, 0.5, 0.5, 1.0, 1.0, 1.0]
-    bar [0.5, 0.5, 0.5, 0.5, 1.0, 1.0, 1.0]
-```
-
-> All three formats scored identically — 🔵 Q4_K_M = 🟠 Q8_0 = 🟢 BF16
-
 ### Scoring Rubric
 
 - **1.0** = Fully correct answer with correct method  
