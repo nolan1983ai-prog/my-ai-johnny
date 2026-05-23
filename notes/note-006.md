@@ -47,20 +47,6 @@ xychart-beta
     bar [2.505, 1.676]
 ```
 
-### Time to First Token (TTFT) by Prompt Length
-
-```mermaid
-xychart-beta
-    title "Time to First Token (ms) — lower is better"
-    x-axis ["Short", "Medium", "Long"]
-    y-axis "TTFT (ms)" 0 --> 800
-    bar [152.4, 196.1, 528.6]
-    bar [202.6, 254.6, 721.1]
-    bar [292.1, 341.9, 559.2]
-```
-
-> 🔵 Q4_K_M &nbsp;&nbsp; 🟠 Q8_0 &nbsp;&nbsp; 🟢 BF16
-
 ### Raw Data Table
 
 | Model | Format | Prompt Type | tok/s Mean | ±Stdev | Min | Max | TTFT Mean (ms) | ±Stdev | Min | Max |
