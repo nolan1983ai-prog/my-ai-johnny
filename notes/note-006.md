@@ -42,9 +42,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Speed Ratio vs BF16 (higher is faster)"
-    x-axis ["Q4_K_M vs BF16", "Q8_0 vs BF16", "Q4_K_M vs Q8_0"]
+    x-axis ["Q4_K_M vs BF16", "Q8_0 vs BF16"]
     y-axis "Ratio (×)" 0 --> 3
-    bar [2.505, 1.676, 1.495]
+    bar [2.505, 1.676]
 ```
 
 ### Time to First Token (TTFT) by Prompt Length
