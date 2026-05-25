@@ -141,19 +141,6 @@ Model will appear as `Qwopus3.6-27B-v2-MTP-Q4_K_M.gguf` in the model selector.
 
 ---
 
-## 9. Performance on GX10
-
-Official benchmark (run on GB10 server, same hardware):
-
-| Metric | Qwen3.6-27B (base) | Qwopus3.6-27B-v2-MTP |
-|--------|--------------------|-----------------------|
-| Overall tok/s | 6.29 | **10.46** |
-| Total eval time | 14,901s | **6,488s** |
-| Completion tokens | 93,802 | **67,862** |
-| Speed gain | — | **+2.3×** |
-
----
-
 ## Key Takeaways
 
 - llama.cpp = raw engine; Ollama = friendly wrapper around llama.cpp
