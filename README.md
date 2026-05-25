@@ -14,6 +14,7 @@
 | [Note 004](notes/note-004.md) | Ollama Inference Parameters — Deep Dive | 2026-05-21 |
 | [Note 005](notes/note-005.md) | Revised Benchmark Test Plan — Addressing Note 003 Methodological Weaknesses | 2026-05-21 |
 | [Note 006](notes/note-006.md) | Revised Benchmark Results — Rigorous Quantization Comparison | 2026-05-21 |
+| [Note 007](notes/note-007.md) | llama.cpp vs Ollama: Installation, Trade-offs, and Why Qwopus Needs llama.cpp | 2026-05-25 |
 
 ---
 
