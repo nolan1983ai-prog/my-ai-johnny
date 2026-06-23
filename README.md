@@ -15,6 +15,8 @@
 | [Note 005](notes/note-005.md) | Revised Benchmark Test Plan — Addressing Note 003 Methodological Weaknesses | 2026-05-21 |
 | [Note 006](notes/note-006.md) | Revised Benchmark Results — Rigorous Quantization Comparison | 2026-05-21 |
 | [Note 007](notes/note-007.md) | llama.cpp vs Ollama: Installation, Trade-offs, and Why Qwopus Needs llama.cpp | 2026-05-25 |
+| [Note 008](notes/note-008.md) | [Add Note 008 Content] | 2026-06-23 |
+| [Note 009](notes/009-AI-LLM-Study-Guide.md) | AI-LLM-Study-Guide: 論文精選清單 | 2026-06-23 |
 
 ---
 
