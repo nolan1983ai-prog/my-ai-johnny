@@ -17,6 +17,7 @@
 | [Note 007](notes/note-007.md) | llama.cpp vs Ollama: Installation, Trade-offs, and Why Qwopus Needs llama.cpp | 2026-05-25 |
 | [Note 008](notes/note-008.md) | Qwopus3.6-27B-v2-MTP: Why It's Better + Jackrong's Full Benchmark | 2026-05-25 |
 | [Note 009](notes/note-009-AI-LLM-Study-Guide.md) | AI-LLM-Study-Guide: 論文精選清單 | 2026-06-23 |
+| [Note 010](notes/note-010.md) | Cisco Live Protect & Tetragon: 從產品研究到動手實驗 | 2026-08-31 |
 
 ---
 
